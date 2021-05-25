@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PostController::class, 'index'])->name('welcome');
+Route::get('/posts/create', [PostController::class, 'create'])-> name('posts.create');
+Route::post('/posts/create', [PostController::class, 'store'])-> name('posts.store');
+Route::get('/posts/{id}', [PostController::class, 'show'])-> name('posts.show');
+Route::get('/contactez-nous', [PostController::class, 'contact'])->name('contact');
+
+// Route::get('/posts', function () {
+//     return response()->json([
+//         'title' => 'izan',
+//         'descri^ption' => 'rien de rien'
+
+//     ]);
+// });
